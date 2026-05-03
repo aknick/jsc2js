@@ -20,7 +20,7 @@ import urllib.request
 import urllib.error
 from typing import List, Set, Iterable
 
-MIN_VERSION = os.environ.get("MIN_VERSION", "12.0.1").strip()
+MIN_VERSION = os.environ.get("MIN_VERSION", "14.6.202").strip()
 REPO_URL = os.environ.get("V8_REPO", "https://github.com/v8/v8.git")
 DEFAULT_CAP = 20
 _raw_cap = os.environ.get("MAX_PER_RUN", "").strip()
