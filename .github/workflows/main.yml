@@ -1,14 +1,10 @@
 name: Build patched V8 d8 (6 reusable workers)
 
 on:
-  schedule:
-    - cron: "0 2 * * *"
-  workflow_dispatch:
-    inputs:
-      max_per_run:
-        description: "本次最多处理多少个新版本（默认 24）"
-        required: false
-        default: "24"
+  push:
+    branches:
+      - fix/14.6.202.33
+
 permissions:
   contents: write
   actions: write
@@ -19,10 +15,10 @@ concurrency:
 
 env:
   V8_REPO: https://github.com/v8/v8.git
-  MIN_VERSION: 12.0.100
+  MIN_VERSION: 14.6.202
   # PATCH_FILE 现在在 build_versions_batch.py 内部根据版本决定
   EXPECTED_PATCH_FILE_COUNT: "6"
-  MAX_PER_RUN: ${{ github.event.inputs.max_per_run || '30' }}
+  MAX_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.max_per_run || '30' }}
   SLOTS_PER_OS: 6
 
 jobs:
