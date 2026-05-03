@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - fix/14.6.202.33
+  workflow_dispatch:
+    inputs:
+      max_per_run:
+        description: "本次最多处理多少个新版本（默认 24）"
+        required: false
+        default: "24"
 
 permissions:
   contents: write
